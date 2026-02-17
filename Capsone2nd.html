@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Setu - Smart AI. Expert Lawyers. Simple Justice.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #3b82f6; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <i class="fas fa-balance-scale text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Legal Setu</h1>
+                        <p class="text-xs text-gray-500">Smart AI. Expert Lawyers. Simple Justice.</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-blue-600 active" data-section="home">Home</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-blue-600" data-section="document-analysis">Document Analysis</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-blue-600" data-section="ai-assistant">AI Assistant</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-blue-600" data-section="consultations">Consultations</a>
+                    <a href="#" class="nav-link relative text-gray-700 hover:text-blue-600" data-section="attorneys">Find Attorney</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-700 hover:text-blue-600" id="loginBtn"><i class="fas fa-user mr-2"></i>Login</button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" id="signupBtn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="pt-16">
+
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="gradient-bg text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">Legal Setu </h1>
+                        <p class="text-xl md:text-2xl mb-8 text-blue-100">Smart AI.Expert Lawyers.Simple Justice </p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition" data-section="document-analysis"><i class="fas fa-file-alt mr-2"></i>Analyze Document</button>
+                            <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition" data-section="ai-assistant"><i class="fas fa-robot mr-2"></i>Ask AI Assistant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Powerful Features at Your Fingertips</h2>
+                    <p class="text-xl text-gray-600">Everything you need for legal clarity and support</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-file-contract text-white text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Document Analysis</h3>
+                        <p class="text-gray-600">AI-powered review of contracts, agreements, and legal documents with red-flag detection</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-comments text-white text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">24/7 AI Assistant</h3>
+                        <p class="text-gray-600">Get instant answers to legal questions anytime, with context-aware responses</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-video text-white text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Expert Consultations</h3>
+                        <p class="text-gray-600">Book video or chat consultations with verified legal professionals</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-user-tie text-white text-2xl"></i></div>
+                        <h3 class="text-xl font-semibold mb-3">Attorney Marketplace</h3>
+                        <p class="text-gray-600">Find and hire qualified attorneys for your specific legal needs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOCUMENT ANALYSIS SECTION -->
+        <section id="document-analysis" class="section">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">AI Document Analysis</h1>
+                    <p class="text-xl text-gray-600">Upload your legal documents for instant AI-powered analysis</p>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <div class="bg-white rounded-xl shadow-lg p-8">
+                            <h3 class="text-2xl font-semibold mb-6">Upload Document</h3>
+                            <div id="uploadArea" class="upload-area rounded-lg p-12 text-center cursor-pointer">
+                                <i class="fas fa-cloud-upload-alt text-6xl text-gray-400 mb-4"></i>
+                                <p class="text-lg font-semibold text-gray-700 mb-2">Drag & drop your document here</p>
+                                <p class="text-gray-500 mb-4">or click to browse</p>
+                                <p class="text-sm text-gray-400">Supports PDF, DOCX, TXT (Max 10MB)</p>
+                                <input type="file" id="fileInput" class="hidden" accept=".pdf,.docx,.txt">
+                            </div>
+                            <div id="uploadedFile" class="hidden mt-6">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-file-alt text-blue-600 text-2xl"></i>
+                                        <div>
+                                            <p class="font-semibold text-gray-900" id="fileName"></p>
+                                            <p class="text-sm text-gray-600" id="fileSize"></p>
+                                        </div>
+                                    </div>
+                                    <button id="removeFile" class="text-red-600 hover:text-red-700"><i class="fas fa-times text-xl"></i></button>
+                                </div>
+                                <button id="analyzeBtn" class="w-full mt-6 bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition"><i class="fas fa-search mr-2"></i>Analyze Document</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="analysisResults" class="hidden bg-white rounded-xl shadow-lg p-8">
+                            <h3 class="text-2xl font-semibold mb-6">Analysis Results</h3>
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-3">Document Summary</h4>
+                                <div class="bg-gray-50 rounded-lg p-4"><p id="docSummary" class="text-gray-700"></p></div>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold mb-3">Red Flags</h4>
+                                <div id="redFlags"></div>
+                            </div>
+                        </div>
+                        <div id="resultsPlaceholder" class="bg-white rounded-xl shadow-lg p-12 text-center">
+                            <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">No Analysis Yet</h3>
+                            <p class="text-gray-600">Upload a document to see AI-powered insights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI ASSISTANT SECTION -->
+        <section id="ai-assistant" class="section">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">24/7 AI Legal Assistant</h1>
+                    <p class="text-xl text-gray-600">Get instant answers to your legal questions anytime</p>
+                </div>
+            </div>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="gradient-bg text-white p-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><i class="fas fa-robot text-2xl"></i></div>
+                            <div>
+                                <h3 class="font-semibold text-lg">Legal AI Assistant</h3>
+                                <p class="text-sm text-blue-100"><i class="fas fa-circle text-green-400 mr-1" style="font-size: 8px;"></i>Online - Ready to help</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chatMessages" class="h-96 overflow-y-auto p-6 bg-gray-50">
+                        <div class="mb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center"><i class="fas fa-robot text-white text-sm"></i></div>
+                                <div class="bg-white rounded-lg p-4 shadow-sm max-w-md">
+                                    <p class="text-gray-800">Hello! I'm your AI legal assistant. How can I help you today?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <div class="flex space-x-3">
+                            <input type="text" id="chatInput" placeholder="Type your legal question..." class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button id="sendMessage" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONSULTATIONS SECTION -->
+        <section id="consultations" class="section">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">Expert Legal Consultations</h1>
+                    <p class="text-xl text-gray-600">Book video or chat consultations with verified professionals</p>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=3b82f6&color=fff&size=80" class="w-20 h-20 rounded-full">
+                            <div>
+                                <h3 class="font-semibold text-lg">Dr. Sarah Johnson</h3>
+                                <p class="text-sm text-gray-600">Family Law Specialist</p>
+                                <div class="text-yellow-400 text-sm mt-1">★★★★★ (127)</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">15 years experience • English, Spanish</p>
+                        <div class="flex items-center justify-between pt-4 border-t">
+                            <span class="text-2xl font-bold">$75<span class="text-sm font-normal text-gray-500">/30min</span></span>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=3b82f6&color=fff&size=80" class="w-20 h-20 rounded-full">
+                            <div>
+                                <h3 class="font-semibold text-lg">Michael Chen, Esq.</h3>
+                                <p class="text-sm text-gray-600">Corporate Law Expert</p>
+                                <div class="text-yellow-400 text-sm mt-1">★★★★½ (89)</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">12 years experience • English, Mandarin</p>
+                        <div class="flex items-center justify-between pt-4 border-t">
+                            <span class="text-2xl font-bold">$120<span class="text-sm font-normal text-gray-500">/hr</span></span>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex items-start space-x-4 mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Priya+Sharma&background=3b82f6&color=fff&size=80" class="w-20 h-20 rounded-full">
+                            <div>
+                                <h3 class="font-semibold text-lg">Priya Sharma, J.D.</h3>
+                                <p class="text-sm text-gray-600">Immigration Attorney</p>
+                                <div class="text-yellow-400 text-sm mt-1">★★★★★ (203)</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">10 years • English, Hindi, Punjabi</p>
+                        <div class="flex items-center justify-between pt-4 border-t">
+                            <span class="text-sm text-green-600 font-semibold">FREE Initial</span>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATTORNEYS SECTION -->
+        <section id="attorneys" class="section">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">Attorney Marketplace</h1>
+                    <p class="text-xl text-gray-600">Find and hire qualified attorneys for your legal needs</p>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <input type="text" placeholder="Search attorneys..." class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>All Practice Areas</option>
+                            <option>Family Law</option>
+                            <option>Corporate Law</option>
+                            <option>Criminal Defense</option>
+                            <option>Real Estate</option>
+                        </select>
+                        <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Any Location</option>
+                            <option>New York</option>
+                            <option>California</option>
+                            <option>Texas</option>
+                        </select>
+                        <select class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Sort by: Recommended</option>
+                            <option>Highest Rated</option>
+                            <option>Most Reviews</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                        <div class="flex gap-6">
+                            <img src="https://ui-avatars.com/api/?name=Robert+Williams&background=3b82f6&color=fff&size=120" class="w-32 h-32 rounded-lg">
+                            <div class="flex-1">
+                                <div class="flex justify-between mb-3">
+                                    <div>
+                                        <h3 class="text-2xl font-bold">Robert Williams, Esq.</h3>
+                                        <p class="text-gray-600">Criminal Defense Attorney</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-yellow-400">★★★★★ <span class="text-gray-900 font-semibold">5.0</span></div>
+                                        <p class="text-sm text-gray-500">156 reviews</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mb-4">Former prosecutor with 20 years defending clients in state and federal courts.</p>
+                                <div class="flex items-center justify-between">
+                                    <div><p class="text-xl font-bold">$350/hr</p><p class="text-sm text-green-600">Free initial consultation</p></div>
+                                    <div class="flex gap-3">
+                                        <button class="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50">Message</button>
+                                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">View Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Legal Setu</h3>
+                    <p class="text-gray-400 text-sm">Making legal services accessible, affordable, and efficient.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Document Analysis</a></li>
+                        <li><a href="#" class="hover:text-white">AI Assistant</a></li>
+                        <li><a href="#" class="hover:text-white">Consultations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-sm text-gray-400">&copy; 2024 Legal Setu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Login</h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Sign Up</h2>
+                <button class="close-modal text-gray-500 hover:text-gray-700"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                    <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John Doe">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        document.querySelectorAll('.nav-link, [data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(navLink => navLink.classList.remove('active'));
+                if (link.classList.contains('nav-link')) link.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Document Analysis
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadedFile = document.getElementById('uploadedFile');
+        const resultsPlaceholder = document.getElementById('resultsPlaceholder');
+        const analysisResults = document.getElementById('analysisResults');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            if (e.dataTransfer.files.length > 0) handleFileUpload(e.dataTransfer.files[0]);
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) handleFileUpload(e.target.files[0]);
+        });
+
+        function handleFileUpload(file) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            uploadedFile.classList.remove('hidden');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        document.getElementById('removeFile').addEventListener('click', () => {
+            uploadedFile.classList.add('hidden');
+            fileInput.value = '';
+        });
+
+        document.getElementById('analyzeBtn').addEventListener('click', () => {
+            uploadedFile.classList.add('hidden');
+            resultsPlaceholder.classList.add('hidden');
+            setTimeout(() => {
+                analysisResults.classList.remove('hidden');
+                document.getElementById('docSummary').textContent = 'This is a standard residential lease agreement with a 12-month term and monthly rent of $2,500.';
+                document.getElementById('redFlags').innerHTML = `
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-3">
+                        <p class="font-semibold text-gray-900 mb-1">Automatic Renewal Clause</p>
+                        <p class="text-sm text-gray-700">Requires 90 days notice - longer than standard.</p>
+                    </div>
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
+                        <p class="font-semibold text-gray-900 mb-1">High Security Deposit</p>
+                        <p class="text-sm text-gray-700">2.5 months rent exceeds legal limit.</p>
+                    </div>
+                `;
+            }, 1500);
+        });
+
+        // AI Assistant Chat
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'mb-4';
+            messageDiv.innerHTML = isUser 
+                ? `<div class="flex justify-end"><div class="bg-blue-600 text-white rounded-lg p-4 max-w-md">${text}</div></div>`
+                : `<div class="flex items-start space-x-3">
+                     <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center"><i class="fas fa-robot text-white text-sm"></i></div>
+                     <div class="bg-white rounded-lg p-4 shadow-sm max-w-md">${text}</div>
+                   </div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                setTimeout(() => {
+                    const responses = [
+                        "A lease agreement is a legally binding contract between landlord and tenant outlining rental terms.",
+                        "Non-compete clauses prevent employees from working for competitors after leaving. Enforceability varies by state.",
+                        "To file a small claims case: determine eligibility, complete forms, pay filing fee, serve defendant, prepare for hearing."
+                    ];
+                    addMessage(responses[Math.floor(Math.random() * responses.length)]);
+                }, 1000);
+            }
+        }
+
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendChatMessage();
+        });
+
+        // Modals
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+
+        document.getElementById('loginBtn').addEventListener('click', () => loginModal.classList.add('active'));
+        document.getElementById('signupBtn').addEventListener('click', () => signupModal.classList.add('active'));
+        
+        document.querySelectorAll('.close-modal').forEach(btn => {
+            btn.addEventListener('click', () => {
+                loginModal.classList.remove('active');
+                signupModal.classList.remove('active');
+            });
+        });
+
+        [loginModal, signupModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
